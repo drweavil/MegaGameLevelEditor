@@ -1,0 +1,1221 @@
+fileFormatVersion: 2
+guid: 0c0115cd871751c45bc57f3655421e85
+timeCreated: 1464504002
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: tors_m
+    21300002: tirs_f
+    21300004: tors_w
+    21300006: head
+    21300008: legs_m
+    21300010: legs_f
+    21300012: r_leg_w
+    21300014: l_lega_w
+    21300016: wrist
+    21300018: wrist90
+    21300020: w_wrist
+    21300022: w_wrist90
+    21300024: w_wrist180
+    21300026: w_feet_b
+    21300028: w_feet_a
+    21300030: feet_a
+    21300032: feet_b
+    21300034: feet_c
+    21300036: r_w_leg
+    21300038: l_w_leg
+    21300040: r_m_leg
+    21300042: r_f_leg
+    21300044: shin_m
+    21300046: shin_f
+    21300048: shin_w
+    21300050: elbow_m
+    21300052: elbow_f
+    21300054: elbow_w
+    21300056: hair_1
+    21300058: wist180
+    21300060: tors_wf
+    21300062: r_legs_ws
+    21300064: l_legs_ws
+    21300066: elbow_ws
+    21300068: r_leg_ws
+    21300070: l_leg_ws
+    21300072: shin_ws
+    21300074: ws_wrist
+    21300076: ws_wrist90
+    21300078: ws_wrist180
+    21300080: ws_feet_b
+    21300082: ws_feet_a
+    21300084: dog_head
+    21300086: dog_hind_shin
+    21300088: dog_fore_shin
+    21300090: forefoot_a
+    21300092: hind_foot_a
+    21300094: hip
+    21300096: dog_legs
+    21300098: tail_a
+    21300100: tail_b
+    21300102: dog_tors
+    21300104: head_w
+    21300106: head_wf
+    21300108: hairWF
+    21300110: hair_w
+    21300112: l_dog_legs
+    21300114: marc_a
+    21300116: marc_b
+    21300118: marc_c
+    21300120: marc_d
+    21300122: tailD
+    21300124: tailC
+    21300126: tailB
+    21300128: tailA
+    21300130: dog_head_a
+    21300132: hip_ bent
+    21300134: forefoot90
+    21300136: pen_head
+    21300138: wing
+    21300140: pen_tail
+    21300142: pen_tors
+    21300144: l_pen_hip
+    21300146: r_pen_hip
+    21300148: pen_feet
+    21300150: pen_taz
+    21300152: pen_nec
+    21300154: dog_tors_b
+    21300156: forefoot_b
+    21300158: forefoot_c
+    21300160: hind_foot_b
+    21300162: hind_foot_c
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: tors_m
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1803
+        width: 43
+        height: 113
+      alignment: 9
+      pivot: {x: 0.51631325, y: 0.15237184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.2014694, y: 95.78198}
+        - {x: -21.20147, y: 71.78198}
+        - {x: -21.20147, y: -5.2180176}
+        - {x: -16.20147, y: -17.218018}
+        - {x: 11.798531, y: -17.218018}
+        - {x: 20.79853, y: 0.7819824}
+        - {x: 20.79853, y: 92.78198}
+        - {x: 11.798531, y: 95.78198}
+    - name: tirs_f
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1794
+        width: 44
+        height: 122
+      alignment: 9
+      pivot: {x: 0.46990272, y: 0.15454602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.32428, y: 103.145386}
+        - {x: -2.6757202, y: 103.145386}
+        - {x: -20.67572, y: 73.145386}
+        - {x: -20.67572, y: -16.854614}
+        - {x: -17.67572, y: -18.854614}
+        - {x: 12.32428, y: -18.854614}
+        - {x: 18.32428, y: -10.854614}
+        - {x: 23.32428, y: 11.145386}
+        - {x: 23.32428, y: 95.145386}
+    - name: tors_w
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1481
+        width: 39
+        height: 115
+      alignment: 9
+      pivot: {x: 0.42180476, y: 0.16586277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.450386, y: 95.92578}
+        - {x: -16.450386, y: 90.92578}
+        - {x: -16.450386, y: -19.074219}
+        - {x: 21.549614, y: -19.074219}
+        - {x: 22.549614, y: -13.074219}
+        - {x: 22.549614, y: 95.92578}
+    - name: head
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 1864
+        width: 28
+        height: 40
+      alignment: 9
+      pivot: {x: 0.2821677, y: 0.2712738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: legs_m
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1841
+        width: 28
+        height: 71
+      alignment: 9
+      pivot: {x: 0.52178353, y: 0.85221237}
+      border: {x: 0, y: 1, z: 0, w: 0}
+      outline: []
+    - name: legs_f
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 1848
+        width: 26
+        height: 67
+      alignment: 9
+      pivot: {x: 0.47519332, y: 0.88584787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: r_leg_w
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1526
+        width: 26
+        height: 66
+      alignment: 9
+      pivot: {x: 0.586956, y: 0.8854259}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: l_lega_w
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1526
+        width: 22
+        height: 66
+      alignment: 9
+      pivot: {x: 0.49999964, y: 0.8326897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: wrist
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1750
+        width: 32
+        height: 22
+      alignment: 9
+      pivot: {x: 0.2108407, y: 0.5983332}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: wrist90
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 1756
+        width: 33
+        height: 15
+      alignment: 9
+      pivot: {x: 0.22701147, y: 0.4777588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: w_wrist
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1290
+        width: 29
+        height: 18
+      alignment: 9
+      pivot: {x: 0.19082944, y: 0.69736737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: w_wrist90
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1293
+        width: 33
+        height: 14
+      alignment: 9
+      pivot: {x: 0.19668025, y: 0.66682655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: w_wrist180
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1291
+        width: 25
+        height: 16
+      alignment: 9
+      pivot: {x: 0.16634735, y: 0.5000076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: w_feet_b
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1353
+        width: 39
+        height: 30
+      alignment: 9
+      pivot: {x: 0.43155906, y: 0.8225342}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: w_feet_a
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1321
+        width: 39
+        height: 23
+      alignment: 9
+      pivot: {x: 0.3673391, y: 0.7430261}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: feet_a
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1745
+        width: 42
+        height: 27
+      alignment: 9
+      pivot: {x: 0.2855083, y: 0.73479545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: feet_b
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1704
+        width: 41
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4755876, y: 0.85450745}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.499092, y: -16.344238}
+        - {x: -8.499092, y: -27.344238}
+        - {x: 21.500908, y: -27.344238}
+        - {x: 21.500908, y: -15.344238}
+        - {x: 13.500908, y: 4.6557617}
+        - {x: -17.499092, y: 4.6557617}
+        - {x: -19.499092, y: 2.6557617}
+    - name: feet_c
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1662
+        width: 46
+        height: 30
+      alignment: 9
+      pivot: {x: 0.15909328, y: 0.7558024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: r_w_leg
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1385
+        width: 35
+        height: 87
+      alignment: 9
+      pivot: {x: 0.38749665, y: 0.83302045}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.562383, y: 14.527222}
+        - {x: -13.562383, y: 12.527222}
+        - {x: -13.562383, y: -51.47278}
+        - {x: -12.562383, y: -63.47278}
+        - {x: -8.562383, y: -72.47278}
+        - {x: 12.437617, y: -72.47278}
+        - {x: 16.437618, y: -70.47278}
+        - {x: 21.437618, y: -45.47278}
+        - {x: 21.437618, y: 9.527222}
+        - {x: 17.437618, y: 14.527222}
+    - name: l_w_leg
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1387
+        width: 32
+        height: 85
+      alignment: 9
+      pivot: {x: 0.4308194, y: 0.89588267}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.786221, y: 8.849976}
+        - {x: -13.786221, y: -76.150024}
+        - {x: 9.213779, y: -76.150024}
+        - {x: 18.21378, y: -51.150024}
+        - {x: 18.21378, y: -1.1500244}
+        - {x: 15.213779, y: 8.849976}
+      - - {x: 13.213779, y: -46.150024}
+        - {x: 13.213779, y: -50.150024}
+        - {x: 15.213779, y: -52.150024}
+        - {x: 18.21378, y: -52.150024}
+        - {x: 18.21378, y: -43.150024}
+        - {x: 16.21378, y: -43.150024}
+    - name: r_m_leg
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1714
+        width: 35
+        height: 82
+      alignment: 9
+      pivot: {x: 0.50000095, y: 0.8455721}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.500034, y: 12.663086}
+        - {x: -17.500034, y: 11.663086}
+        - {x: -17.500034, y: -27.336914}
+        - {x: -10.500034, y: -63.336914}
+        - {x: -5.5000343, y: -69.336914}
+        - {x: 17.499966, y: -69.336914}
+        - {x: 17.499966, y: 12.663086}
+    - name: r_f_leg
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1705
+        width: 36
+        height: 89
+      alignment: 9
+      pivot: {x: 0.5747969, y: 0.81602085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.307312, y: 16.374146}
+        - {x: -11.692688, y: 16.374146}
+        - {x: -20.692688, y: 7.3741455}
+        - {x: -20.692688, y: -35.625854}
+        - {x: -18.692688, y: -66.625854}
+        - {x: -7.692688, y: -72.625854}
+        - {x: 8.307312, y: -72.625854}
+        - {x: 14.307312, y: -65.625854}
+        - {x: 15.307312, y: -46.625854}
+        - {x: 15.307312, y: 12.3741455}
+    - name: shin_m
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1640
+        width: 25
+        height: 64
+      alignment: 9
+      pivot: {x: 0.57084334, y: 0.9081726}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: shin_f
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1636
+        width: 23
+        height: 65
+      alignment: 9
+      pivot: {x: 0.6118675, y: 0.9255277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: shin_w
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 1316
+        width: 24
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5677061, y: 0.9317589}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: elbow_m
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1785
+        width: 22
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.87843156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: elbow_f
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 1787
+        width: 21
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5405782, y: 0.9009}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: elbow_w
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 1477
+        width: 19
+        height: 46
+      alignment: 9
+      pivot: {x: 0.41500494, y: 0.8875255}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hair_1
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1881
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: wist180
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 1726
+        width: 28
+        height: 19
+      alignment: 9
+      pivot: {x: 0.1743551, y: 0.52399004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tors_wf
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 1479
+        width: 38
+        height: 112
+      alignment: 9
+      pivot: {x: 0.41951632, y: 0.1313542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.94162, y: 97.28833}
+        - {x: -15.94162, y: 95.28833}
+        - {x: -15.94162, y: -6.71167}
+        - {x: -11.94162, y: -14.71167}
+        - {x: 12.05838, y: -14.71167}
+        - {x: 22.05838, y: -5.71167}
+        - {x: 22.05838, y: 97.28833}
+    - name: r_legs_ws
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1523
+        width: 25
+        height: 65
+      alignment: 9
+      pivot: {x: 0.51546264, y: 0.8884878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: l_legs_ws
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1524
+        width: 24
+        height: 64
+      alignment: 9
+      pivot: {x: 0.48401132, y: 0.8717365}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: elbow_ws
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 1474
+        width: 20
+        height: 46
+      alignment: 9
+      pivot: {x: 0.50000155, y: 0.8169927}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: r_leg_ws
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1384
+        width: 32
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5119271, y: 0.8577822}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.381668, y: 11.804077}
+        - {x: -16.381668, y: -63.195923}
+        - {x: -13.381668, y: -71.19592}
+        - {x: 4.618332, y: -71.19592}
+        - {x: 15.618332, y: -59.195923}
+        - {x: 15.618332, y: 11.804077}
+    - name: l_leg_ws
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1386
+        width: 31
+        height: 82
+      alignment: 9
+      pivot: {x: 0.44281745, y: 0.86568993}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: shin_ws
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 1313
+        width: 22
+        height: 65
+      alignment: 9
+      pivot: {x: 0.41178063, y: 0.9073336}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: ws_wrist
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1288
+        width: 27
+        height: 16
+      alignment: 9
+      pivot: {x: 0.18733583, y: 0.5239868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: ws_wrist90
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1291
+        width: 28
+        height: 11
+      alignment: 9
+      pivot: {x: 0.19302113, y: 0.6744274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: ws_wrist180
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1288
+        width: 25
+        height: 15
+      alignment: 9
+      pivot: {x: 0.19302307, y: 0.4744222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: ws_feet_b
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 1351
+        width: 35
+        height: 31
+      alignment: 9
+      pivot: {x: 0.47678354, y: 0.78222656}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: ws_feet_a
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1316
+        width: 38
+        height: 26
+      alignment: 9
+      pivot: {x: 0.3081376, y: 0.79517543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: dog_head
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1414
+        width: 93
+        height: 62
+      alignment: 9
+      pivot: {x: 0.22335647, y: 0.6176305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.772156, y: 23.70691}
+        - {x: -20.772156, y: 21.70691}
+        - {x: -20.772156, y: -38.29309}
+        - {x: 65.227844, y: -38.29309}
+        - {x: 68.227844, y: -37.29309}
+        - {x: 72.227844, y: -26.29309}
+        - {x: 72.227844, y: 1.7069092}
+        - {x: 38.227844, y: 23.70691}
+    - name: dog_hind_shin
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 1470
+        width: 24
+        height: 51
+      alignment: 9
+      pivot: {x: 0.6279087, y: 0.8912497}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: dog_fore_shin
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1424
+        width: 25
+        height: 46
+      alignment: 9
+      pivot: {x: 0.62279236, y: 0.8503577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: forefoot_a
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 1394
+        width: 42
+        height: 25
+      alignment: 9
+      pivot: {x: 0.12697566, y: 0.8559229}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hind_foot_a
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1498
+        width: 46
+        height: 29
+      alignment: 9
+      pivot: {x: 0.16493756, y: 0.83994055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hip
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 1410
+        width: 47
+        height: 56
+      alignment: 9
+      pivot: {x: 0.49199075, y: 0.76224625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.123566, y: 13.314209}
+        - {x: -23.123566, y: 5.314209}
+        - {x: -23.123566, y: -42.68579}
+        - {x: 10.876434, y: -42.68579}
+        - {x: 18.876434, y: -39.68579}
+        - {x: 22.876434, y: -23.685791}
+        - {x: 22.876434, y: 13.314209}
+    - name: dog_legs
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 1396
+        width: 50
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5820569, y: 0.6472168}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.102844, y: 28.222656}
+        - {x: -29.102844, y: -51.777344}
+        - {x: 0.89715576, y: -51.777344}
+        - {x: 20.897156, y: -38.777344}
+        - {x: 20.897156, y: 25.222656}
+        - {x: 19.897156, y: 28.222656}
+    - name: dog_tors
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 1600
+        width: 73
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5087155, y: 0.43509674}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.13623, y: 36.15381}
+        - {x: -37.13623, y: 31.153809}
+        - {x: -37.13623, y: -25.846191}
+        - {x: -36.13623, y: -27.846191}
+        - {x: 30.86377, y: -27.846191}
+        - {x: 35.86377, y: -16.846191}
+        - {x: 35.86377, y: 33.15381}
+        - {x: 23.86377, y: 36.15381}
+    - name: head_w
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1477
+        width: 29
+        height: 43
+      alignment: 9
+      pivot: {x: 0.15414219, y: 0.2667435}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: head_wf
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 1436
+        width: 30
+        height: 38
+      alignment: 9
+      pivot: {x: 0.17694677, y: 0.20298044}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hairWF
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1402
+        width: 37
+        height: 31
+      alignment: 9
+      pivot: {x: 0.59857464, y: 0.45587748}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hair_w
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1597
+        width: 45
+        height: 48
+      alignment: 9
+      pivot: {x: 0.54817134, y: 0.5401738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.66771, y: 22.071655}
+        - {x: -24.66771, y: 8.071655}
+        - {x: -24.66771, y: -19.928345}
+        - {x: -22.66771, y: -25.928345}
+        - {x: -3.6677094, y: -25.928345}
+        - {x: 1.3322906, y: -24.928345}
+        - {x: 20.33229, y: 2.0716553}
+        - {x: 20.33229, y: 15.071655}
+        - {x: 13.332291, y: 22.071655}
+    - name: l_dog_legs
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 1333
+        width: 45
+        height: 66
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.81084096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.500015, y: 8.484497}
+        - {x: -22.500015, y: 3.484497}
+        - {x: -22.500015, y: -53.515503}
+        - {x: 2.4999847, y: -53.515503}
+        - {x: 22.499985, y: -33.515503}
+        - {x: 22.499985, y: 8.484497}
+      - - {x: 18.499985, y: -53.515503}
+        - {x: 17.499985, y: -50.515503}
+        - {x: 13.499985, y: -50.515503}
+        - {x: 12.499985, y: -53.515503}
+    - name: marc_a
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 1319
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: marc_b
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1292
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: marc_c
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1377
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: marc_d
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1379
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tailD
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 1552
+        width: 29
+        height: 22
+      alignment: 9
+      pivot: {x: 0.8301381, y: 0.4464555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tailC
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 1553
+        width: 33
+        height: 15
+      alignment: 9
+      pivot: {x: 0.8827006, y: 0.48213705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tailB
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1554
+        width: 47
+        height: 17
+      alignment: 9
+      pivot: {x: 0.8934891, y: 0.5297493}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tailA
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1554
+        width: 41
+        height: 20
+      alignment: 9
+      pivot: {x: 0.8057273, y: 0.45806885}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: dog_head_a
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1351
+        width: 92
+        height: 61
+      alignment: 9
+      pivot: {x: 0.1902718, y: 0.642418}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.505005, y: 21.8125}
+        - {x: -17.505005, y: -23.1875}
+        - {x: -15.505005, y: -32.1875}
+        - {x: -7.505005, y: -38.1875}
+        - {x: 74.494995, y: -38.1875}
+        - {x: 74.494995, y: 10.8125}
+        - {x: 46.494995, y: 21.8125}
+    - name: hip_ bent
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1278
+        width: 50
+        height: 57
+      alignment: 9
+      pivot: {x: 0.4999997, y: 0.7634127}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.000015, y: 13.485474}
+        - {x: -24.999985, y: 13.485474}
+        - {x: -24.999985, y: -43.514526}
+        - {x: -7.9999847, y: -43.514526}
+        - {x: 11.000015, y: -39.514526}
+        - {x: 19.000015, y: -26.514526}
+        - {x: 23.000015, y: -3.5145264}
+        - {x: 23.000015, y: 9.485474}
+      - - {x: 19.000015, y: 13.485474}
+        - {x: 18.000015, y: 12.485474}
+        - {x: 19.000015, y: 9.485474}
+        - {x: 22.000015, y: 9.485474}
+        - {x: 24.000015, y: 11.485474}
+        - {x: 23.000015, y: 13.485474}
+    - name: forefoot90
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 1349
+        width: 36
+        height: 19
+      alignment: 9
+      pivot: {x: 0.18126424, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pen_head
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 1528
+        width: 67
+        height: 42
+      alignment: 9
+      pivot: {x: 0.15667953, y: 0.28184873}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.497528, y: 30.162354}
+        - {x: -10.497528, y: 23.162354}
+        - {x: -10.497528, y: -11.8376465}
+        - {x: 56.502472, y: -11.8376465}
+        - {x: 56.502472, y: 10.1623535}
+        - {x: 48.502472, y: 28.162354}
+        - {x: 37.502472, y: 30.162354}
+    - name: wing
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1475
+        width: 36
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5387923, y: 0.8388383}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.603485, y: 14.504517}
+        - {x: -19.396515, y: 14.504517}
+        - {x: -19.396515, y: -75.49548}
+        - {x: -7.396515, y: -75.49548}
+        - {x: 5.603485, y: -55.495483}
+        - {x: 11.603485, y: -35.495483}
+        - {x: 16.603485, y: -11.495483}
+    - name: pen_tail
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1478
+        width: 30
+        height: 91
+      alignment: 9
+      pivot: {x: 0.48952836, y: 0.8915681}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pen_tors
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 1413
+        width: 62
+        height: 112
+      alignment: 9
+      pivot: {x: 0.47115302, y: 0.13538143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.211487, y: 96.83728}
+        - {x: -29.211487, y: 65.83728}
+        - {x: -29.211487, y: -15.16272}
+        - {x: 32.788513, y: -15.16272}
+        - {x: 32.788513, y: 92.83728}
+        - {x: 23.788513, y: 96.83728}
+      - - {x: -29.211487, y: 64.83728}
+        - {x: -27.211487, y: 64.83728}
+        - {x: -25.211487, y: 66.83728}
+        - {x: -26.211487, y: 69.83728}
+        - {x: -29.211487, y: 69.83728}
+    - name: l_pen_hip
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 1323
+        width: 29
+        height: 35
+      alignment: 9
+      pivot: {x: 0.50000095, y: 0.747562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: r_pen_hip
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 1323
+        width: 30
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5217552, y: 0.7634013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pen_feet
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 1335
+        width: 51
+        height: 22
+      alignment: 9
+      pivot: {x: 0.29392737, y: 0.82524526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: pen_taz
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 1365
+        width: 70
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 20.5}
+        - {x: -35, y: 14.5}
+        - {x: -35, y: -20.5}
+        - {x: 34, y: -20.5}
+        - {x: 35, y: -9.5}
+        - {x: 35, y: 18.5}
+        - {x: 31, y: 20.5}
+    - name: pen_nec
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 1512
+        width: 21
+        height: 39
+      alignment: 9
+      pivot: {x: 0.46646264, y: 0.24716735}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: dog_tors_b
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1602
+        width: 107
+        height: 49
+      alignment: 9
+      pivot: {x: 0.9177842, y: 0.76811874}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -98.20291, y: 11.362183}
+        - {x: -98.20291, y: -32.637817}
+        - {x: -82.20291, y: -36.637817}
+        - {x: -9.202911, y: -36.637817}
+        - {x: 8.797089, y: -29.637817}
+        - {x: 8.797089, y: 10.362183}
+        - {x: 5.7970886, y: 11.362183}
+      - - {x: -23.202911, y: -29.637817}
+        - {x: -22.202911, y: -32.637817}
+        - {x: -19.202911, y: -32.637817}
+        - {x: -17.202911, y: -30.637817}
+        - {x: -18.202911, y: -27.637817}
+        - {x: -21.202911, y: -27.637817}
+    - name: forefoot_b
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1362
+        width: 32
+        height: 26
+      alignment: 9
+      pivot: {x: 0.30634022, y: 0.8449942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: forefoot_c
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1430
+        width: 28
+        height: 43
+      alignment: 9
+      pivot: {x: 0.36590794, y: 0.8653309}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hind_foot_b
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1497
+        width: 37
+        height: 36
+      alignment: 9
+      pivot: {x: 0.33596802, y: 0.87623763}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.569183, y: 4.4554443}
+        - {x: -12.430817, y: 4.4554443}
+        - {x: -12.430817, y: -31.544556}
+        - {x: 24.569183, y: -31.544556}
+        - {x: 24.569183, y: -22.544556}
+        - {x: 20.569183, y: -19.544556}
+    - name: hind_foot_c
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1490
+        width: 26
+        height: 45
+      alignment: 9
+      pivot: {x: 0.30103478, y: 0.898622}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
