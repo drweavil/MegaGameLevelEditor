@@ -71,11 +71,10 @@ public class ListElementsController : MonoBehaviour {
 		float textureWidthSize = sprite.texture.width;
 		float textureHeightSize = sprite.texture.height;
 
-
-		uvs.Add (new Vector2(uvRect.position.x*(1f/textureWidthSize), uvRect.position.y*(1f/textureHeightSize)));
-		uvs.Add (new Vector2((uvRect.position.x + uvRect.width)*(1f/textureWidthSize), uvRect.position.y*(1f/textureHeightSize)));
-		uvs.Add (new Vector2((uvRect.position.x + uvRect.width)*(1f/textureWidthSize), (uvRect.position.y + uvRect.height)*(1f/textureHeightSize)));
 		uvs.Add (new Vector2(uvRect.position.x*(1f/textureWidthSize), (uvRect.position.y + uvRect.height)*(1f/textureHeightSize)));
+		uvs.Add (new Vector2((uvRect.position.x + uvRect.width)*(1f/textureWidthSize), (uvRect.position.y + uvRect.height)*(1f/textureHeightSize)));
+		uvs.Add (new Vector2((uvRect.position.x + uvRect.width)*(1f/textureWidthSize), uvRect.position.y*(1f/textureHeightSize)));
+		uvs.Add (new Vector2(uvRect.position.x*(1f/textureWidthSize), uvRect.position.y*(1f/textureHeightSize)));
 		return uvs;	
 	}
 

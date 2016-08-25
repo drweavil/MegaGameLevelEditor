@@ -9,6 +9,7 @@ public class Button : MonoBehaviour {
 	private InputField saveLoadTypeField;
 	private InputField saveLoadNumberField;
 	private InputField saveLoadSizeField;
+	private InputField randomPercentField;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,7 @@ public class Button : MonoBehaviour {
 		saveLoadTypeField = GameObject.Find ("SaveLoadTypeField").GetComponent<InputField> ();
 		saveLoadNumberField = GameObject.Find ("SaveLoadNumberField").GetComponent<InputField> ();
 		saveLoadSizeField = GameObject.Find ("SaveLoadSizeField").GetComponent<InputField> ();
+		randomPercentField = GameObject.Find ("RandomPercentField").GetComponent<InputField> ();
 
 
 
@@ -98,27 +100,33 @@ public class Button : MonoBehaviour {
 	}
 
 	public void AddSet(){
-		InputField randomModePercentValue = GameObject.Find ("RandomPercentField").GetComponent<InputField>();
-		int rndPercent = 50;
-		try{
-			rndPercent = int.Parse(randomModePercentValue.text);
-			if(rndPercent > 100){
-				rndPercent = 100;
+		if (randomPercentField.text == "" || randomPercentField.text == null) {
+			UIController.uic.dialogWindow.SetActive (true);
+			GameObject.Find ("DialogWindowText").GetComponent<Text> ().text = "Значение рандома нету!";
+		} else {
+			InputField randomModePercentValue = GameObject.Find ("RandomPercentField").GetComponent<InputField>();
+			int rndPercent = 50;
+			try{
+				rndPercent = int.Parse(randomModePercentValue.text);
+				if(rndPercent > 100){
+					rndPercent = 100;
+				}
+				if(rndPercent < 0){
+					rndPercent = 0;
+				}
+			}catch(FormatException){
 			}
-			if(rndPercent < 0){
-				rndPercent = 0;
-			}
-		}catch(FormatException){
+
+			Set newSet = BlockController.bc.level.AddSet(BlockController.bc.selectedObjects, rndPercent);
+			GameObject setListGround = GameObject.Find ("GridSetsList");
+			GameObject newSetGround = Instantiate((GameObject)Resources.Load ("UI/SetGround"));
+
+			newSetGround.transform.parent = setListGround.transform;
+			newSetGround.transform.GetChild(0).gameObject.GetComponent<AddedSet> ().setId = newSet.objId;
+			newSetGround.transform.GetChild (0).GetChild (0).gameObject.GetComponent<Text> ().text = "set " + newSet.objId.ToString ();
+			BlockController.bc.level.setsCount++;
 		}
 
-		Set newSet = BlockController.bc.level.AddSet(BlockController.bc.selectedObjects, rndPercent);
-		GameObject setListGround = GameObject.Find ("GridSetsList");
-		GameObject newSetGround = Instantiate((GameObject)Resources.Load ("UI/SetGround"));
-
-		newSetGround.transform.parent = setListGround.transform;
-		newSetGround.transform.GetChild(0).gameObject.GetComponent<AddedSet> ().setId = newSet.objId;
-		newSetGround.transform.GetChild (0).GetChild (0).gameObject.GetComponent<Text> ().text = "set " + newSet.objId.ToString ();
-		BlockController.bc.level.setsCount++;
 	}
 
 	public void RemoveSet(){

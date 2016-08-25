@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
 using System;
 
 
@@ -71,7 +72,7 @@ public class BlockController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.I)){
-			
+			Debug.Log (selectedObjects.Count);
 		}
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
@@ -91,207 +92,212 @@ public class BlockController : MonoBehaviour {
 
 		if(!EventSystem.current.IsPointerOverGameObject()){
 			if (editorMode == "creating") {
-				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				Physics.Raycast (ray, out hit);
-				if (creatingMode == "tile") {
-					if (Input.GetMouseButton (0)) {				
-						if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && tileList.selectedUV.Count != 0) {
-							int mouseBlockX = (int)mousePosition.x;
-							int mouseBlockY = (int)mousePosition.y;
-							if (IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "tile")/*blocks[mouseBlockX.ToString()+";"+ mouseBlockY.ToString()] == null*/) {
-								if (meshes [meshes.Count - 1].GetComponent<LevelMesh> ().newVertices.Count >= 12000) {
-									newMesh = Instantiate (levelMeshPrefab);
-									meshes.Add (newMesh);
+				if (randomeModeActive == true && (GameObject.Find ("RandomPercentField").GetComponent<InputField> ().text == "" || GameObject.Find ("RandomPercentField").GetComponent<InputField> ().text == null)) {
+					UIController.uic.dialogWindow.SetActive (true);
+					GameObject.Find ("DialogWindowText").GetComponent<Text> ().text = "Значение рандома нету!";
+				} else {
+					ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+					Physics.Raycast (ray, out hit);
+					if (creatingMode == "tile") {
+						if (Input.GetMouseButton (0)) {				
+							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && tileList.selectedUV.Count != 0) {
+								int mouseBlockX = (int)mousePosition.x;
+								int mouseBlockY = (int)mousePosition.y;
+								if (IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "tile")/*blocks[mouseBlockX.ToString()+";"+ mouseBlockY.ToString()] == null*/) {
+									if (meshes [meshes.Count - 1].GetComponent<LevelMesh> ().newVertices.Count >= 12000) {
+										newMesh = Instantiate (levelMeshPrefab);
+										meshes.Add (newMesh);
 
-								} 
-								meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenTile (mouseBlockX, mouseBlockY, 0, tileList.selectedUV);
+									} 
+									meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenTile (mouseBlockX, mouseBlockY, 0, tileList.selectedUV);
 
-								List<SerializableVector2> uvs = new List<SerializableVector2> ();
-								foreach (Vector2 uv in tileList.selectedUV) {
-									uvs.Add (new SerializableVector2 (uv.x, uv.y));
-								}
-								level.AddBlock (new SerializableVector3 (mouseBlockX, mouseBlockY, 0), uvs, randomeModeActive, rndPercent);
-							}
-						}
-					}
-
-					if (Input.GetMouseButton (1)) {
-						if (mousePosition.x > 0 && mousePosition.y < 0) {
-							int mouseBlockX = (int)mousePosition.x;
-							int mouseBlockY = (int)mousePosition.y;
-							if (hit.collider != null) {
-								if (hit.collider.name == "LevelMesh(Clone)") {
-									hit.collider.GetComponent<LevelMesh> ().RemoveTile ((float)mouseBlockX, (float)mouseBlockY, 0f);
-									if (hit.collider.GetComponent<LevelMesh> ().newVertices.Count == 0) {
-										if (meshes.Count != 1) {
-											meshes.RemoveAt (meshes.FindIndex (meshPred => meshPred.GetComponent<LevelMesh> ().newVertices.Count == 0));
-											Destroy (hit.collider.gameObject);
-										}
+									List<SerializableVector2> uvs = new List<SerializableVector2> ();
+									foreach (Vector2 uv in tileList.selectedUV) {
+										uvs.Add (new SerializableVector2 (uv.x, uv.y));
 									}
-								}							
-							}
-							List<ObjectInfo> objects = FindObjectByMousePosition (new Vector2 (mousePosition.x, mousePosition.y));
-							objects = objects.FindAll (o => o.objectType == "tile");
-							foreach (ObjectInfo obj in objects) {
-								level.RemoveObjectById (obj.objId);
+									level.AddBlock (new SerializableVector3 (mouseBlockX, mouseBlockY, 0), uvs, randomeModeActive, rndPercent);
+								}
 							}
 						}
-					}
-				}
 
-				if(creatingMode == "decor"){
-					if (Input.GetMouseButton (0)) {				
-						if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && tileList.selectedUV.Count != 0) {
-							bool isFreePosition = IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "decor");
-							if(Input.GetKey(KeyCode.G)){
-								Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
-								decorRectPosition = DownStickingByRect (decorRectPosition);
-								isFreePosition = IsFreePlace (decorRectPosition, "decor");
-							}
-							if(Input.GetKey(KeyCode.T)){
-								Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
-								decorRectPosition = UpStickingByRect (decorRectPosition);
-								isFreePosition = IsFreePlace (decorRectPosition, "decor");
-							}
-							if(Input.GetKey(KeyCode.F)){
-								Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
-								decorRectPosition = LeftStickingByRect (decorRectPosition);
-								isFreePosition = IsFreePlace (decorRectPosition, "decor");
-							}
-							if(Input.GetKey(KeyCode.H)){
-								Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
-								decorRectPosition = RightStickingByRect (decorRectPosition);
-								isFreePosition = IsFreePlace (decorRectPosition, "decor");
-							}
-							if (isFreePosition){
-								if (meshes [meshes.Count - 1].GetComponent<LevelMesh> ().newVertices.Count >= 12000) {
-									newMesh = Instantiate (levelMeshPrefab);
-									meshes.Add (newMesh);
-
-								} 
-
-								ObjectInfo newObj = new ObjectInfo ();
-								Rect decorRect = GetRectBySelectedTile (mousePosition);
-								if(Input.GetKey(KeyCode.G)){
-									decorRect = DownStickingByRect (decorRect);
+						if (Input.GetMouseButton (1)) {
+							if (mousePosition.x > 0 && mousePosition.y < 0) {
+								int mouseBlockX = (int)mousePosition.x;
+								int mouseBlockY = (int)mousePosition.y;
+								if (hit.collider != null) {
+									if (hit.collider.name == "LevelMesh(Clone)") {
+										hit.collider.GetComponent<LevelMesh> ().RemoveTile ((float)mouseBlockX, (float)mouseBlockY, 0f);
+										if (hit.collider.GetComponent<LevelMesh> ().newVertices.Count == 0) {
+											if (meshes.Count != 1) {
+												meshes.RemoveAt (meshes.FindIndex (meshPred => meshPred.GetComponent<LevelMesh> ().newVertices.Count == 0));
+												Destroy (hit.collider.gameObject);
+											}
+										}
+									}							
 								}
-								if(Input.GetKey(KeyCode.T)){
-									decorRect = UpStickingByRect (decorRect);
+								List<ObjectInfo> objects = FindObjectByMousePosition (new Vector2 (mousePosition.x, mousePosition.y));
+								objects = objects.FindAll (o => o.objectType == "tile");
+								foreach (ObjectInfo obj in objects) {
+									level.RemoveObjectById (obj.objId);
 								}
-								if(Input.GetKey(KeyCode.F)){
-									decorRect = LeftStickingByRect (decorRect);
-								}
-								if(Input.GetKey(KeyCode.H)){
-									decorRect = RightStickingByRect (decorRect);
-								}
-								List<Vector3> decorVerticesCoords = GetVerticesCoordsByRect(decorRect);
-								newObj.objRectCoord = new SerializableVector2(decorRect.x, decorRect.y);
-								newObj.objRectHeight = decorRect.height;
-								newObj.objRectWidth = decorRect.width;
-
-								List<SerializableVector3> serDecorVerticesCoords = new List<SerializableVector3> ();
-								foreach(Vector3 coord in decorVerticesCoords){
-									serDecorVerticesCoords.Add (new SerializableVector3(coord.x, coord.y, coord.z));	
-								}
-
-								List<SerializableVector2> serDecorUv = new List<SerializableVector2> ();
-								foreach(Vector2 uv in tileList.selectedUV){
-									serDecorUv.Add (new SerializableVector2(uv.x, uv.y));	
-								}
-
-
-								level.AddDecorBlock (serDecorVerticesCoords, serDecorUv, newObj, randomeModeActive, rndPercent);
-
-
-								meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenSquareByCoords (decorVerticesCoords, tileList.selectedUV);
-
 							}
 						}
 					}
 
-					if (Input.GetMouseButton (1)) {
-						if (mousePosition.x > 0 && mousePosition.y < 0) {
-							List<ObjectInfo> objects = FindObjectByMousePosition (new Vector2 (mousePosition.x, mousePosition.y));
-							objects = objects.FindAll (o => o.objectType == "decor");
-							foreach (ObjectInfo obj in objects) {
-								Rect objRect = new Rect ();
-								objRect.position = new Vector2 (obj.objRectCoord.x, obj.objRectCoord.y);
-								objRect.width = obj.objRectWidth;
-								objRect.height = obj.objRectHeight;
-
-								foreach(GameObject mesh in meshes){
-									mesh.GetComponent<LevelMesh> ().RemoveSquareByCoords(GetVerticesCoordsByRect (objRect));
+					if (creatingMode == "decor") {
+						if (Input.GetMouseButton (0)) {				
+							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && tileList.selectedUV.Count != 0) {
+								bool isFreePosition = IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "decor");
+								if (Input.GetKey (KeyCode.G)) {
+									Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
+									decorRectPosition = DownStickingByRect (decorRectPosition);
+									isFreePosition = IsFreePlace (decorRectPosition, "decor");
 								}
-								level.RemoveObjectById (obj.objId);
+								if (Input.GetKey (KeyCode.T)) {
+									Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
+									decorRectPosition = UpStickingByRect (decorRectPosition);
+									isFreePosition = IsFreePlace (decorRectPosition, "decor");
+								}
+								if (Input.GetKey (KeyCode.F)) {
+									Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
+									decorRectPosition = LeftStickingByRect (decorRectPosition);
+									isFreePosition = IsFreePlace (decorRectPosition, "decor");
+								}
+								if (Input.GetKey (KeyCode.H)) {
+									Rect decorRectPosition = GetRectBySelectedTile (mousePosition);
+									decorRectPosition = RightStickingByRect (decorRectPosition);
+									isFreePosition = IsFreePlace (decorRectPosition, "decor");
+								}
+								if (isFreePosition) {
+									if (meshes [meshes.Count - 1].GetComponent<LevelMesh> ().newVertices.Count >= 12000) {
+										newMesh = Instantiate (levelMeshPrefab);
+										meshes.Add (newMesh);
+
+									} 
+
+									ObjectInfo newObj = new ObjectInfo ();
+									Rect decorRect = GetRectBySelectedTile (mousePosition);
+									if (Input.GetKey (KeyCode.G)) {
+										decorRect = DownStickingByRect (decorRect);
+									}
+									if (Input.GetKey (KeyCode.T)) {
+										decorRect = UpStickingByRect (decorRect);
+									}
+									if (Input.GetKey (KeyCode.F)) {
+										decorRect = LeftStickingByRect (decorRect);
+									}
+									if (Input.GetKey (KeyCode.H)) {
+										decorRect = RightStickingByRect (decorRect);
+									}
+									List<Vector3> decorVerticesCoords = GetVerticesCoordsByRect (decorRect);
+									newObj.objRectCoord = new SerializableVector2 (decorRect.x, decorRect.y);
+									newObj.objRectHeight = decorRect.height;
+									newObj.objRectWidth = decorRect.width;
+
+									List<SerializableVector3> serDecorVerticesCoords = new List<SerializableVector3> ();
+									foreach (Vector3 coord in decorVerticesCoords) {
+										serDecorVerticesCoords.Add (new SerializableVector3 (coord.x, coord.y, coord.z));	
+									}
+
+									List<SerializableVector2> serDecorUv = new List<SerializableVector2> ();
+									foreach (Vector2 uv in tileList.selectedUV) {
+										serDecorUv.Add (new SerializableVector2 (uv.x, uv.y));	
+									}
+
+
+									level.AddDecorBlock (serDecorVerticesCoords, serDecorUv, newObj, randomeModeActive, rndPercent);
+
+
+									meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenSquareByCoords (decorVerticesCoords, tileList.selectedUV);
+
+								}
 							}
+						}
+
+						if (Input.GetMouseButton (1)) {
+							if (mousePosition.x > 0 && mousePosition.y < 0) {
+								List<ObjectInfo> objects = FindObjectByMousePosition (new Vector2 (mousePosition.x, mousePosition.y));
+								objects = objects.FindAll (o => o.objectType == "decor");
+								foreach (ObjectInfo obj in objects) {
+									Rect objRect = new Rect ();
+									objRect.position = new Vector2 (obj.objRectCoord.x, obj.objRectCoord.y);
+									objRect.width = obj.objRectWidth;
+									objRect.height = obj.objRectHeight;
+
+									foreach (GameObject mesh in meshes) {
+										mesh.GetComponent<LevelMesh> ().RemoveSquareByCoords (GetVerticesCoordsByRect (objRect));
+									}
+									level.RemoveObjectById (obj.objId);
+								}
+							}							
+						}
+					}
+
+					if (creatingMode == "interactiveObject") {
+						if (Input.GetMouseButton (0)) {				
+							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && ListElementsController.selectedInteractiveObject != "") {
+								bool isFreePosition = IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "interactiveObject");
+								if (Input.GetKey (KeyCode.G)) {
+									Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
+									objectRectPosition = DownStickingByRect (objectRectPosition);
+									isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
+								}
+								if (Input.GetKey (KeyCode.T)) {
+									Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
+									objectRectPosition = UpStickingByRect (objectRectPosition);
+									isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
+								}
+								if (Input.GetKey (KeyCode.F)) {
+									Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
+									objectRectPosition = LeftStickingByRect (objectRectPosition);
+									isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
+								}
+								if (Input.GetKey (KeyCode.H)) {
+									Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
+									objectRectPosition = RightStickingByRect (objectRectPosition);
+									isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
+								}
+								if (isFreePosition) {
+									ObjectInfo newObj = new ObjectInfo ();
+									Rect interactiveObjectRect = GetRectBySelectedObject (mousePosition);
+									if (Input.GetKey (KeyCode.G)) {
+										interactiveObjectRect = DownStickingByRect (interactiveObjectRect);
+									}
+									if (Input.GetKey (KeyCode.T)) {
+										interactiveObjectRect = UpStickingByRect (interactiveObjectRect);
+									}
+									if (Input.GetKey (KeyCode.F)) {
+										interactiveObjectRect = LeftStickingByRect (interactiveObjectRect);
+									}
+									if (Input.GetKey (KeyCode.H)) {
+										interactiveObjectRect = RightStickingByRect (interactiveObjectRect);
+									}
+
+									newObj.objRectCoord = new SerializableVector2 (interactiveObjectRect.x, interactiveObjectRect.y);
+									newObj.objRectHeight = interactiveObjectRect.height;
+									newObj.objRectWidth = interactiveObjectRect.width;
+
+									InteractiveObject newIntObj = level.AddInteractiveObject (new SerializableVector3 (interactiveObjectRect.center.x, interactiveObjectRect.center.y, 0), ListElementsController.selectedInteractiveObject, newObj, randomeModeActive, rndPercent);
+									GameObject newSceneIntObj = Instantiate ((GameObject)interactiveObjectPrefabs [ListElementsController.selectedInteractiveObject]);
+									newSceneIntObj.transform.position = interactiveObjectRect.center;
+									newSceneIntObj.GetComponent<InteractiveObjectScene> ().objId = newIntObj.objId;
+								}
+							}
+						}
+
+						if (Input.GetMouseButton (1)) {
+							if (mousePosition.x > 0 && mousePosition.y < 0) {
+								List<ObjectInfo> objects = FindObjectByMousePosition (new Vector2 (mousePosition.x, mousePosition.y));
+								objects = objects.FindAll (o => o.objectType == "interactiveObject");
+								foreach (ObjectInfo obj in objects) {
+									GameObject[] tmp = GameObject.FindGameObjectsWithTag ("InteractiveObject");
+									List<GameObject> interactiveObjects = new List<GameObject> (tmp);
+									Destroy (interactiveObjects.Find (o => o.GetComponent<InteractiveObjectScene> ().objId == obj.objId));
+									level.RemoveObjectById (obj.objId);
+								}
+							}							
 						}							
 					}
-				}
-
-				if(creatingMode == "interactiveObject"){
-					if (Input.GetMouseButton (0)) {				
-						if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && ListElementsController.selectedInteractiveObject != "") {
-							bool isFreePosition = IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "interactiveObject");
-							if(Input.GetKey(KeyCode.G)){
-								Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
-								objectRectPosition = DownStickingByRect (objectRectPosition);
-								isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
-							}
-							if(Input.GetKey(KeyCode.T)){
-								Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
-								objectRectPosition = UpStickingByRect (objectRectPosition);
-								isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
-							}
-							if(Input.GetKey(KeyCode.F)){
-								Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
-								objectRectPosition = LeftStickingByRect (objectRectPosition);
-								isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
-							}
-							if(Input.GetKey(KeyCode.H)){
-								Rect objectRectPosition = GetRectBySelectedObject (mousePosition);
-								objectRectPosition = RightStickingByRect (objectRectPosition);
-								isFreePosition = IsFreePlace (objectRectPosition, "interactiveObject");
-							}
-							if (isFreePosition) {
-								ObjectInfo newObj = new ObjectInfo ();
-								Rect interactiveObjectRect = GetRectBySelectedObject (mousePosition);
-								if(Input.GetKey(KeyCode.G)){
-									interactiveObjectRect  = DownStickingByRect (interactiveObjectRect );
-								}
-								if(Input.GetKey(KeyCode.T)){
-									interactiveObjectRect  = UpStickingByRect (interactiveObjectRect );
-								}
-								if(Input.GetKey(KeyCode.F)){
-									interactiveObjectRect  = LeftStickingByRect (interactiveObjectRect );
-								}
-								if(Input.GetKey(KeyCode.H)){
-									interactiveObjectRect  = RightStickingByRect (interactiveObjectRect );
-								}
-
-								newObj.objRectCoord = new SerializableVector2(interactiveObjectRect.x, interactiveObjectRect.y);
-								newObj.objRectHeight = interactiveObjectRect.height;
-								newObj.objRectWidth = interactiveObjectRect.width;
-
-								InteractiveObject newIntObj = level.AddInteractiveObject (new SerializableVector3(interactiveObjectRect.center.x, interactiveObjectRect.center.y, 0), ListElementsController.selectedInteractiveObject, newObj, randomeModeActive, rndPercent);
-								GameObject newSceneIntObj = Instantiate ((GameObject)interactiveObjectPrefabs[ListElementsController.selectedInteractiveObject]);
-								newSceneIntObj.transform.position = interactiveObjectRect.center;
-								newSceneIntObj.GetComponent<InteractiveObjectScene> ().objId = newIntObj.objId;
-							}
-						}
-					}
-
-					if (Input.GetMouseButton (1)) {
-						if (mousePosition.x > 0 && mousePosition.y < 0) {
-							List<ObjectInfo> objects = FindObjectByMousePosition (new Vector2 (mousePosition.x, mousePosition.y));
-							objects = objects.FindAll (o => o.objectType == "interactiveObject");
-							foreach (ObjectInfo obj in objects) {
-								GameObject[] tmp = GameObject.FindGameObjectsWithTag("InteractiveObject");
-								List<GameObject> interactiveObjects = new List<GameObject> (tmp);
-								Destroy(interactiveObjects.Find (o => o.GetComponent<InteractiveObjectScene>().objId == obj.objId));
-								level.RemoveObjectById (obj.objId);
-							}
-						}							
-					}							
 				}
 			}
 
@@ -398,6 +404,7 @@ public class BlockController : MonoBehaviour {
 						foreach(ObjectInfo obj in FindObjectsByRect(squareRect)){
 							selectedObjects.Add (obj);
 						}
+						selectedObjects = selectedObjects.Distinct ().ToList();
 
 						DrawSquaresForSelectedObjects (selectedObjects);
 					}
@@ -656,9 +663,6 @@ public class BlockController : MonoBehaviour {
 		if(upPosition > positionStartY && downPosition < positionStartY){
 			coeff = -1;
 		}
-		/*if(upPosition > positionStartY && downPosition < positionEndY){
-			coeff = -1;
-		}*/
 
 		Rect newRect = rect;
 		newRect.center = new Vector2 (rect.center.x, (rect.center.y + coeff*distanceY));

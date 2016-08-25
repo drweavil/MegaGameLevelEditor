@@ -81,10 +81,13 @@ public class LevelMesh : MonoBehaviour {
 		newTriangles.Add ((squareCount * 4)+3);
 
 
-		newUV.Add (uvVertices[3]);
-		newUV.Add (uvVertices[2]);
-		newUV.Add (uvVertices[1]);
+
+
+
 		newUV.Add (uvVertices[0]);
+		newUV.Add (uvVertices[1]);
+		newUV.Add (uvVertices[2]);
+		newUV.Add (uvVertices[3]);
 
 		squareCount++;
 		UpdateMesh ();
@@ -153,11 +156,10 @@ public class LevelMesh : MonoBehaviour {
 		newTriangles.Add ((squareCount * 4)+2);
 		newTriangles.Add ((squareCount * 4)+3);
 
-
-		newUV.Add (uvVertices[3]);
-		newUV.Add (uvVertices[2]);
-		newUV.Add (uvVertices[1]);
 		newUV.Add (uvVertices[0]);
+		newUV.Add (uvVertices[1]);
+		newUV.Add (uvVertices[2]);
+		newUV.Add (uvVertices[3]);
 
 		squareCount++;
 	}
