@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Linq;
 using System;
+using SimpleJSON;
 
 
 
@@ -14,10 +15,9 @@ using System;
 public class BlockController : MonoBehaviour {
 	private Vector3 worldMousePosition;
 	private Hashtable blocks = new Hashtable();
-	private int width = 70;
-	private int height = 70;
+	public int width = 70;
+	public int height = 70;
 	public static List<GameObject> meshes = new List<GameObject> ();
-	public static List<LevelMesh> returnMeshes = new List<LevelMesh> ();
 	private GameObject newMesh;
 	private GameObject levelMesh; 
 	private GameObject levelMeshPrefab;
@@ -40,11 +40,15 @@ public class BlockController : MonoBehaviour {
 
 	public string editorMode = "creating";
 	public string creatingMode = "tile";
+	public bool autoTile = false;
+	public string autoTileMode = "";
 
 	public bool randomeModeActive = false;
 
 	private Hashtable interactiveObjectPrefabs = new Hashtable ();
 	InputField randomModePercentValue;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -71,9 +75,9 @@ public class BlockController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.I)){
+		/*if(Input.GetKeyDown(KeyCode.I)){
 			Debug.Log (selectedObjects.Count);
-		}
+		}*/
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
 		/*********************Random****************/
@@ -91,7 +95,7 @@ public class BlockController : MonoBehaviour {
 		/*********************************************/
 
 		if(!EventSystem.current.IsPointerOverGameObject()){
-			if (editorMode == "creating") {
+			if (editorMode == "creating" || autoTile) {
 				if (randomeModeActive == true && (GameObject.Find ("RandomPercentField").GetComponent<InputField> ().text == "" || GameObject.Find ("RandomPercentField").GetComponent<InputField> ().text == null)) {
 					UIController.uic.dialogWindow.SetActive (true);
 					GameObject.Find ("DialogWindowText").GetComponent<Text> ().text = "Значение рандома нету!";
@@ -100,7 +104,7 @@ public class BlockController : MonoBehaviour {
 					Physics.Raycast (ray, out hit);
 					if (creatingMode == "tile") {
 						if (Input.GetMouseButton (0)) {				
-							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && tileList.selectedUV.Count != 0) {
+							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && (tileList.selectedUV.Count != 0 || autoTile)) {
 								int mouseBlockX = (int)mousePosition.x;
 								int mouseBlockY = (int)mousePosition.y;
 								if (IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "tile")/*blocks[mouseBlockX.ToString()+";"+ mouseBlockY.ToString()] == null*/) {
@@ -109,13 +113,24 @@ public class BlockController : MonoBehaviour {
 										meshes.Add (newMesh);
 
 									} 
-									meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenTile (mouseBlockX, mouseBlockY, 0, tileList.selectedUV);
+
+									int uvsID = 0;
+									List<Vector2> currentUvs = new List<Vector2>();
+
+									if (autoTile) {
+										uvsID = tileList.GetRandomTileIdByAutoTileMode (autoTileMode);
+										currentUvs = tileList.GetUVsByID (uvsID);
+									} else {
+										uvsID = tileList.selectedTileID;
+										currentUvs = tileList.GetUVsByID (uvsID);
+									}
+									meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenTile (mouseBlockX, mouseBlockY, 0, currentUvs);
 
 									List<SerializableVector2> uvs = new List<SerializableVector2> ();
 									foreach (Vector2 uv in tileList.selectedUV) {
 										uvs.Add (new SerializableVector2 (uv.x, uv.y));
 									}
-									level.AddBlock (new SerializableVector3 (mouseBlockX, mouseBlockY, 0), uvs, randomeModeActive, rndPercent);
+									level.AddBlock (new SerializableVector3 (mouseBlockX, mouseBlockY, 0), uvsID, randomeModeActive, rndPercent);
 								}
 							}
 						}
@@ -144,7 +159,7 @@ public class BlockController : MonoBehaviour {
 						}
 					}
 
-					if (creatingMode == "decor") {
+					if (creatingMode == "decor" && !autoTile) {
 						if (Input.GetMouseButton (0)) {				
 							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && tileList.selectedUV.Count != 0) {
 								bool isFreePosition = IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "decor");
@@ -199,16 +214,31 @@ public class BlockController : MonoBehaviour {
 										serDecorVerticesCoords.Add (new SerializableVector3 (coord.x, coord.y, coord.z));	
 									}
 
+
+									int uvsID = 0;
+									List<Vector2> currentUvs = new List<Vector2>();
+
+									/*if (autoTile) {
+
+									} else {*/
+										uvsID = tileList.selectedTileID;
+										currentUvs = tileList.GetUVsByID (uvsID);
+									//}
+
+
+
 									List<SerializableVector2> serDecorUv = new List<SerializableVector2> ();
-									foreach (Vector2 uv in tileList.selectedUV) {
+									foreach (Vector2 uv in currentUvs) {
 										serDecorUv.Add (new SerializableVector2 (uv.x, uv.y));	
 									}
 
 
-									level.AddDecorBlock (serDecorVerticesCoords, serDecorUv, newObj, randomeModeActive, rndPercent);
 
 
-									meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenSquareByCoords (decorVerticesCoords, tileList.selectedUV);
+									level.AddDecorBlock (serDecorVerticesCoords, uvsID, newObj, randomeModeActive, rndPercent);
+
+
+									meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenSquareByCoords (decorVerticesCoords, currentUvs);
 
 								}
 							}
@@ -233,7 +263,7 @@ public class BlockController : MonoBehaviour {
 						}
 					}
 
-					if (creatingMode == "interactiveObject") {
+					if (creatingMode == "interactiveObject" && !autoTile) {
 						if (Input.GetMouseButton (0)) {				
 							if (mousePosition.x > 0 && mousePosition.y < 0 && mousePosition.x < width && mousePosition.y > -height && ListElementsController.selectedInteractiveObject != "") {
 								bool isFreePosition = IsFreePlace (new Vector2 (mousePosition.x, mousePosition.y), "interactiveObject");
@@ -304,7 +334,7 @@ public class BlockController : MonoBehaviour {
 
 
 
-			if (editorMode == "allocation") {
+			if (editorMode == "allocation" && !autoTile) {
 				if (Input.GetKeyDown (KeyCode.Delete)) {
 					List<ObjectInfo> removedObjects = new List<ObjectInfo> ();
 					foreach (ObjectInfo obj in selectedObjects) {
@@ -438,18 +468,12 @@ public class BlockController : MonoBehaviour {
 		}
 	}
 
-
-	/*public List<LevelMesh> GetMeshes (){
-		returnMeshes.Clear ();
-		for (int i = 0; i < meshes.Count; i++) {
-			returnMeshes.Add (meshes [i].GetComponent<LevelMesh> ());
-		}
-		return returnMeshes;
-	}*/
-
 	public void DrawLevel(){
 		DestroyMeshes ();
 
+
+		ListElementsController.listElementsController.LoadTexturesByName (level.textureName);
+		//DropDownScript.dropDownScript.
 
 		if (meshes.Count == 0) {
 			meshes.Add (Instantiate(levelMeshPrefab));
@@ -461,10 +485,10 @@ public class BlockController : MonoBehaviour {
 			if (meshes [meshes.Count - 1].GetComponent<LevelMesh> ().newVertices.Count >= 12000) {
 				meshes.Add (Instantiate(levelMeshPrefab));
 			}
-			List<Vector2> uvs = new List<Vector2> ();
-			foreach (SerializableVector2 sUv in block.squareUV) {
+			List<Vector2> uvs = ListElementsController.listElementsController.GetUVsByID (block.uvsID);//new List<Vector2> ();
+			/*foreach (SerializableVector2 sUv in block.squareUV) {
 				uvs.Add (new Vector2 (sUv.x, sUv.y));
-			}
+			}*/
 			meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenTile (block.blockCoords.x, block.blockCoords.y, block.blockCoords.z, uvs);
 		}
 
@@ -481,10 +505,10 @@ public class BlockController : MonoBehaviour {
 				vertices.Add (new Vector3 (vert.x, vert.y, vert.z));
 			}
 
-			List<Vector2> uvs = new List<Vector2> ();
-			foreach (SerializableVector2 sUv in decorBlock.squareUV) {
+			List<Vector2> uvs = ListElementsController.listElementsController.GetUVsByID (decorBlock.uvsID);//new List<Vector2> ();
+			/*foreach (SerializableVector2 sUv in decorBlock.squareUV) {
 				uvs.Add (new Vector2 (sUv.x, sUv.y));
-			}
+			}*/
 			meshes [meshes.Count - 1].GetComponent<LevelMesh> ().GenSquareByCoords (vertices, uvs);
 		}
 
@@ -505,9 +529,19 @@ public class BlockController : MonoBehaviour {
 			newSetGround.transform.GetChild (0).GetChild (0).gameObject.GetComponent<Text> ().text = "set " + newSet.objId.ToString ();
 		}
 
-		Sprite[] sprites = Resources.LoadAll<Sprite> ("GameTextures/" + level.textureName);
+		Sprite[] sprites = Resources.LoadAll<Sprite> ("TileSets/" + "set_" + level.textureName);
 		Texture mainTexture = sprites [0].texture;
 		ListElementsController.SetTextureToMeshes (mainTexture);
+
+
+		GridController.gridController.gridWidth = level.levelWidth;
+		GridController.gridController.gridHeight = level.levelHeight;
+
+		GridController.gridController.widthInputField.text = level.levelWidth.ToString();
+		GridController.gridController.heightInputField.text = level.levelHeight.ToString();
+
+		GridController.gridController.RedrawGrid ();
+
 	}
 
 	void DestroyMeshes(){
@@ -719,6 +753,40 @@ public class BlockController : MonoBehaviour {
 		intObjRect.height = selectedInveractiveObject.GetComponent<BoxCollider> ().size.y * selectedInveractiveObject.transform.localScale.y;
 		intObjRect.center = new Vector2 (mousePosition.x, mousePosition.y);
 		return intObjRect;
+	}
+
+	public void ClearLevel(){
+		for (int i = 0; i < meshes.Count; i++) {
+			Destroy (meshes [i]);
+		}
+		meshes.Clear ();
+
+		levelMeshPrefab = (GameObject)Resources.Load("LevelMesh");
+		levelMesh = Instantiate(levelMeshPrefab);
+		meshes.Add (levelMesh);
+
+
+		GameObject[] tmp = GameObject.FindGameObjectsWithTag ("InteractiveObject");
+		List<GameObject> interactiveObjects = new List<GameObject> (tmp);
+		foreach (ObjectInfo obj in level.objects) {
+			
+			int index = interactiveObjects.FindIndex (o => o.GetComponent<InteractiveObjectScene> ().objId == obj.objId);
+			if (index != -1) {
+				Destroy (interactiveObjects[index]);
+			}
+			//level.RemoveObjectById (obj.objId);
+		}
+
+		level = GetNewLevelRudiment();
+		objectList.Clear ();
+	}
+
+	public LevelRudiment GetNewLevelRudiment(){
+		LevelRudiment rudiment = new LevelRudiment ();
+		rudiment.levelHeight = height;
+		rudiment.levelWidth = width;
+		rudiment.textureName = ListElementsController.listElementsController.textureAtlasName;
+		return rudiment;
 	}
 
 

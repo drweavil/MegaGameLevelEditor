@@ -11,7 +11,7 @@ public static class SaveLoadManager {
 	private static List<LevelMesh> meshes = new List<LevelMesh> ();
 
 
-	public static List<string> Save(string disk, string size, string texture, string type, string number, bool rewrite = false){
+	public static List<string> Save(string disk, string texture, string type, string number, bool rewrite = false){
 		List<string> errors = new List<string> ();
 		if (disk == "" || disk == null) {
 			errors.Add ("Введи диск, слепошарый!");
@@ -22,12 +22,22 @@ public static class SaveLoadManager {
 		if (number == "" || number == null) {
 			errors.Add ("А номер кто вводить будет?!");
 		}
-		if (size == "" || size == null) {
-			errors.Add ("Размер где? А?А?А?");
+		if (type != "" && type != null) {
+			if (!levelSerialize.PortalsTypeCheck (int.Parse (type))) {
+				errors.Add ("Мини-порталы не соответствуют типу");
+			}
 		}
 
+		if (!levelSerialize.WallWithoutHolesCheck ()) {
+			errors.Add ("Дыры в стенах залатай!");
+		}
+		/*if (size == "" || size == null) {
+			errors.Add ("Размер где? А?А?А?");
+		}*/
+
 		if (errors.Count == 0) {
-			string directory = disk + ":/MegaGameLevels/" + texture + "/" + size + "/" + type;
+			levelSerialize.SetEnemiesCount ();
+			string directory = disk + ":/MegaGameLevels/" + texture +  "/" + type;
 			string path = directory + "/" + number + ".level";
 			if (!Directory.Exists (directory)) {
 				Directory.CreateDirectory (directory);
@@ -57,8 +67,8 @@ public static class SaveLoadManager {
 		return errors;
 	}
 
-	public static List<string> Load(string disk, string size, string texture, string type, string number){
-		string directory = disk + ":/MegaGameLevels/" + texture + "/" + size + "/" + type;
+	public static List<string> Load(string disk, string texture, string type, string number){
+		string directory = disk + ":/MegaGameLevels/" + texture +  "/" + type;
 		string path = directory + "/" + number + ".level";
 
 		List<string> errors = new List<string> ();
@@ -71,9 +81,9 @@ public static class SaveLoadManager {
 		if (number == "" || number == null) {
 			errors.Add ("А номер кто вводить будет?!");
 		}
-		if (size == "" || size == null) {
+		/*if (size == "" || size == null) {
 			errors.Add ("Размер где? А?А?А?");
-		}
+		}*/
 
 		if (errors.Count == 0) {
 			LevelRudiment level;

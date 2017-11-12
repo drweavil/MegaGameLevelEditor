@@ -9,6 +9,10 @@ public class UIController : MonoBehaviour {
 	public GameObject rewriteRequesDialog;
 	public static UIController uic;
 
+
+	public GameObject autoTileList;
+	public GameObject objectsTileList;
+
 	// Use this for initialization
 	void Start () {
 		uic = gameObject.GetComponent<UIController>();

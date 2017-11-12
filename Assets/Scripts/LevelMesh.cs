@@ -51,13 +51,13 @@ public class LevelMesh : MonoBehaviour {
 		mesh.vertices = newVertices.ToArray();
 		mesh.triangles = newTriangles.ToArray();
 		mesh.uv = newUV.ToArray ();
-		mesh.Optimize ();
+		;
 		mesh.RecalculateNormals ();
 
 		colMesh.Clear ();
 		colMesh.vertices = colVertices.ToArray();
 		colMesh.triangles = colTriangles.ToArray();
-		colMesh.Optimize ();
+		;
 		colMesh.RecalculateNormals ();
 
 

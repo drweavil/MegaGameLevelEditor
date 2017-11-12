@@ -7,6 +7,8 @@ public class TileScript : MonoBehaviour {
 	public List<Vector2> uvVertices = new List<Vector2>();
 	public float textureWidth;
 	public float textureHeight;
+	public string tileName;
+	public int tileID;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,7 @@ public class TileScript : MonoBehaviour {
 
 	public void SetTile (){
 		tileList.selectedUV = uvVertices;
+		tileList.selectedTileID = tileID;
 		tileList.selectedTileTextureHeight = textureHeight;
 		tileList.selectedTileTextureWidth = textureWidth;
 	}

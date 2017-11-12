@@ -1,0 +1,65 @@
+{
+  "leftTop": {
+    "normalName": "tail_1",
+    "names":[
+      "tail_11",
+      "tail_12"
+    ]
+  },
+  "top": {
+    "normalName": "tail_2",
+    "names":[
+      "tail_13",
+      "tail_14"
+    ]
+  },
+  "rightTop": {
+    "normalName": "tail_3",
+    "names":[
+      "tail_15",
+      "tail_16"
+    ]
+  },
+  "left": {
+    "normalName": "tail_8",
+    "names":[
+      "tail_25",
+      "tail_26"
+    ]
+  },
+  "center": {
+    "normalName": "tail_0",
+    "names":[
+      "tail_9",
+      "tail_10"
+    ]
+  },
+  "right": {
+    "normalName": "tail_4",
+    "names":[
+      "tail_17",
+      "tail_18"
+    ]
+  },
+  "leftBottom": {
+    "normalName": "tail_7",
+    "names":[
+      "tail_23",
+      "tail_24"
+    ]
+  },
+  "bottom": {
+    "normalName": "tail_6",
+    "names":[
+      "tail_21",
+      "tail_22"
+    ]
+  },
+  "rightBottom": {
+    "normalName": "tail_5",
+    "names":[
+      "tail_19",
+      "tail_20"
+    ]
+  }
+}

@@ -16,7 +16,7 @@ public class Button : MonoBehaviour {
 		saveLoadDiskField = GameObject.Find ("SaveLoadDiskField").GetComponent<InputField> ();
 		saveLoadTypeField = GameObject.Find ("SaveLoadTypeField").GetComponent<InputField> ();
 		saveLoadNumberField = GameObject.Find ("SaveLoadNumberField").GetComponent<InputField> ();
-		saveLoadSizeField = GameObject.Find ("SaveLoadSizeField").GetComponent<InputField> ();
+		//saveLoadSizeField = GameObject.Find ("SaveLoadSizeField").GetComponent<InputField> ();
 		randomPercentField = GameObject.Find ("RandomPercentField").GetComponent<InputField> ();
 
 
@@ -32,7 +32,7 @@ public class Button : MonoBehaviour {
 
 	public void Save(bool rewrite = false){
 		SaveLoadManager.levelSerialize = BlockController.bc.level;
-		List<string> errors = SaveLoadManager.Save (saveLoadDiskField.text, saveLoadSizeField.text, GameObject.Find ("Dropdown").GetComponent<Dropdown> ().captionText.text, saveLoadTypeField.text, saveLoadNumberField.text, rewrite);
+		List<string> errors = SaveLoadManager.Save (saveLoadDiskField.text, GameObject.Find ("Dropdown").GetComponent<Dropdown> ().captionText.text, saveLoadTypeField.text, saveLoadNumberField.text, rewrite);
 		if (errors.Count != 0) {
 			if (errors.FindIndex (s => s == "rewriteRequest") == -1) {
 				UIController.uic.dialogWindow.SetActive (true);
@@ -48,7 +48,7 @@ public class Button : MonoBehaviour {
 	}
 
 	public void Load(){
-		List<string> errors = SaveLoadManager.Load (saveLoadDiskField.text, saveLoadSizeField.text, GameObject.Find ("Dropdown").GetComponent<Dropdown> ().captionText.text, saveLoadTypeField.text, saveLoadNumberField.text);
+		List<string> errors = SaveLoadManager.Load (saveLoadDiskField.text, GameObject.Find ("Dropdown").GetComponent<Dropdown> ().captionText.text, saveLoadTypeField.text, saveLoadNumberField.text);
 	
 	
 		if (errors.Count != 0) {
@@ -76,16 +76,27 @@ public class Button : MonoBehaviour {
 	public void SetDecorsActive(){
 		ListElementsController.listType = "decors";
 		BlockController.bc.creatingMode = "decor";
+		foreach (GameObject panel in ListElementsController.listElementsController.tilesPanels/*GameObject.FindGameObjectsWithTag("TilesPanel")*/) {
+			Destroy (panel);
+		}
 		GameObject.Find("ObjectsLists").GetComponent<ListElementsController>().LoadTexturesByName(GameObject.Find ("Dropdown").GetComponent<Dropdown> ().captionText.text);
 	}
 
 	public void SetTilesActive(){
 		ListElementsController.listType = "tiles";
 		BlockController.bc.creatingMode = "tile";
+		foreach (GameObject panel in ListElementsController.listElementsController.tilesPanels/*GameObject.FindGameObjectsWithTag("TilesPanel")*/) {
+			Destroy (panel);
+		}
 		GameObject.Find("ObjectsLists").GetComponent<ListElementsController>().LoadTexturesByName(GameObject.Find ("Dropdown").GetComponent<Dropdown> ().captionText.text);
+	
 	}
 
 	public void SetInteractiveObjectsActive(){
+		foreach (GameObject panel in ListElementsController.listElementsController.tilesPanels/*GameObject.FindGameObjectsWithTag("TilesPanel")*/) {
+			Destroy (panel);
+		}
+		ListElementsController.listElementsController.tilesPanels.Clear ();
 		BlockController.bc.creatingMode = "interactiveObject";
 		GameObject list = GameObject.Find("GridTileSpritesList");
 		GameObject[] removedObjects = GameObject.FindGameObjectsWithTag ("TilesPanel");
@@ -96,6 +107,7 @@ public class Button : MonoBehaviour {
 		foreach(GameObject obj in menuObjects){
 			GameObject newObject = Instantiate (obj);
 			newObject.transform.parent = list.transform;
+			ListElementsController.listElementsController.tilesPanels.Add (newObject);
 		}
 	}
 
@@ -164,5 +176,19 @@ public class Button : MonoBehaviour {
 
 	public void RewriteDialogNoButton(){
 		UIController.uic.rewriteRequesDialog.SetActive (false);
+	}
+
+	public void AutoTileButton(){
+		if (BlockController.bc.autoTile) {
+			BlockController.bc.autoTile = false;
+			ListElementsController.listElementsController.autoTileListObjects.SetActive (false);
+			ListElementsController.listElementsController.tileListObjects.SetActive (true);
+			ListElementsController.listElementsController.autoTileButtonImage.color = Color.white;
+		} else {
+			BlockController.bc.autoTile = true;
+			ListElementsController.listElementsController.autoTileListObjects.SetActive (true);
+			ListElementsController.listElementsController.tileListObjects.SetActive (false);
+			ListElementsController.listElementsController.autoTileButtonImage.color = Color.gray;
+		}
 	}
 }

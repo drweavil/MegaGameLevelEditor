@@ -220,7 +220,7 @@ public class GridMeshController : MonoBehaviour {
 		mesh.vertices = lineVertices.ToArray();
 		mesh.triangles = lineTriangles.ToArray();
 		mesh.uv = lineUV.ToArray ();
-		mesh.Optimize ();
+		;
 		mesh.RecalculateNormals ();
 	}
 }

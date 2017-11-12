@@ -21,9 +21,15 @@ public class LevelRudiment{
 	public int setsCount = 0;
 	public List<ObjectInfo> objects = new List<ObjectInfo>();
 
-	public void AddBlock(SerializableVector3 coords, List<SerializableVector2> uvs, bool isRandom = false, int rndPercent = 50){
+	public int levelWidth;
+	public int levelHeight;
+
+	public int enemiesFixCount = 0;
+	public int enemiesRandomCount = 0;
+
+	public void AddBlock(SerializableVector3 coords, int id, bool isRandom = false, int rndPercent = 50){
 		Block block = new Block ();
-		block.SetData (coords, uvs);
+		block.SetData (coords, id);
 		block.objId = objIdsCount;
 		if (isRandom) {
 			block.rnd = rndPercent;
@@ -41,9 +47,9 @@ public class LevelRudiment{
 		objIdsCount = objIdsCount + 1;
 	}
 
-	public void AddDecorBlock(List<SerializableVector3> coords, List<SerializableVector2> uvs, ObjectInfo obj, bool isRandom = false, int rndPercent = 50){
+	public void AddDecorBlock(List<SerializableVector3> coords, int id, ObjectInfo obj, bool isRandom = false, int rndPercent = 50){
 		DecorBlock block = new DecorBlock ();
-		block.SetData (coords, uvs);
+		block.SetData (coords, id	);
 		block.objId = objIdsCount;
 		if (isRandom) {
 			block.rnd = rndPercent;
@@ -134,6 +140,78 @@ public class LevelRudiment{
 				randomInteractiveObjects.RemoveAt (randomInteractiveObjectIndex);
 			}
 		}
+	}
+
+
+	public void SetEnemiesCount(){
+		enemiesFixCount = fixInteractiveObjects.FindAll (o => o.type == "enemyH").Count;
+		enemiesRandomCount = randomInteractiveObjects.FindAll (o => o.type == "enemyH").Count;
+	}
+
+
+	public bool PortalsTypeCheck(int type){
+		Dictionary<int, List<string>> typePortals = new Dictionary<int, List<string>> ();
+		typePortals.Add (1, new List<string>(new string[]{"portalL", "portalR"}));
+		typePortals.Add (2, new List<string>(new string[]{"portalL", "portalR", "portalU"}));
+		typePortals.Add (3, new List<string>(new string[]{"portalL", "portalR", "portalD"}));
+		typePortals.Add (4, new List<string>(new string[]{"portalL", "portalR", "portalU", "portalD"}));
+		typePortals.Add (5, new List<string>(new string[]{"portalR", "portalU", "portalD"}));
+		typePortals.Add (6, new List<string>(new string[]{"portalL", "portalU", "portalD"}));
+		typePortals.Add (7, new List<string>(new string[]{"portalU", "portalD"}));
+		typePortals.Add (8, new List<string>(new string[]{"portalR", "portalD"}));
+		typePortals.Add (9, new List<string>(new string[]{"portalL", "portalD"}));
+		typePortals.Add (10, new List<string>(new string[]{"portalR", "portalU"}));
+		typePortals.Add (11, new List<string>(new string[]{"portalL", "portalU"}));
+		typePortals.Add (12, new List<string>(new string[]{"portalL"}));
+		typePortals.Add (13, new List<string>(new string[]{"portalR"}));
+		typePortals.Add (14, new List<string>(new string[]{"portalD"}));
+		typePortals.Add (15, new List<string>(new string[]{"portalU"}));
+
+
+		bool isRight = true;
+
+		foreach (string typeString in typePortals[type]) {
+			int index = fixInteractiveObjects.FindIndex (f => f.type == typeString);
+			if (index == -1) {
+				isRight = false;
+			}
+		}
+
+		return isRight;
+	} 
+
+
+	public bool WallWithoutHolesCheck(){
+		bool isRight = true;
+
+		List<List<int>> wallPoints = new List<List<int>> ();
+
+
+
+		for(int i = 0; i < levelWidth; i++){
+			wallPoints.Add(new List<int>(new int[]{i, 0}));
+		}
+		for(int i = 0; i < levelWidth; i++){
+			wallPoints.Add(new List<int>(new int[]{i, -1 * (levelHeight - 1)}));
+		}
+
+		for(int i = 0; i < levelHeight; i++){
+			wallPoints.Add(new List<int>(new int[]{0, -1 * i}));
+		}
+		for(int i = 0; i < levelWidth; i++){
+			wallPoints.Add(new List<int>(new int[]{levelWidth - 1, -1 * i}));
+		}
+
+		foreach (List<int> wallPoint in wallPoints) {
+			if (fixBlocks.FindIndex (f => (f.blockCoords.x == wallPoint [0]) && (f.blockCoords.y == wallPoint [1])) == -1) {
+				isRight = false;
+				Debug.Log (wallPoint[0].ToString() + " " + wallPoint[1]);
+			}
+		}
+
+
+
+		return isRight;
 	}
 
 

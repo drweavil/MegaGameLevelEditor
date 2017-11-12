@@ -1,16 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BlockController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UIScripts\Button.cs">
     <Files>
-      <File FileName="Assets\Scripts\BlockController.cs" Line="1" Column="1" />
-      <File FileName="Assets\UIScripts\ListElementsController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SaveLoadManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelObjects\LevelRudiment.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BlockController.cs" Line="770" Column="68" />
+      <File FileName="Assets\LevelObjects\LevelRudiment.cs" Line="108" Column="21" />
+      <File FileName="Assets\Scripts\SaveLoadManager.cs" Line="53" Column="28" />
       <File FileName="Assets\LevelObjects\ObjectInfo.cs" Line="1" Column="1" />
-      <File FileName="..\MegaProject\Assets\Scripts\GUI\JoystickScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Surrogates\SerializableVector2.cs" Line="1" Column="1" />
       <File FileName="Assets\Surrogates\SerializableVector3.cs" Line="1" Column="1" />
-      <File FileName="Assets\UIScripts\Button.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIScripts\Button.cs" Line="110" Column="78" />
       <File FileName="Assets\UIScripts\DropDownScript.cs" Line="1" Column="1" />
       <File FileName="Assets\UIScripts\TileScript.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelObjects\Set.cs" Line="1" Column="1" />
@@ -19,10 +17,15 @@
       <File FileName="Assets\LevelObjects\InteractiveObject.cs" Line="1" Column="1" />
       <File FileName="Assets\UIScripts\InteractiveObjecUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\InteractiveObjectScene.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GridController.cs" Line="51" Column="47" />
       <File FileName="Assets\Scripts\LevelMesh.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelObjects\DecorBlock.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelObjects\Block.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIScripts\UIController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Tools.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIScripts\AutoTileButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIScripts\ListElementsController.cs" Line="64" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

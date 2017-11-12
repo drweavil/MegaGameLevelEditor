@@ -5,7 +5,12 @@ using UnityEngine.UI;
 public class DropDownScript : MonoBehaviour {
 	public Dropdown levelTypeDropDown;
 	public GameObject objectLists;
+	public static DropDownScript dropDownScript;
 
+
+	void Awake(){
+		dropDownScript = this;
+	}
 	// Use this for initialization
 	void Start () {
 		objectLists = GameObject.Find ("ObjectsLists");
